@@ -52,9 +52,8 @@ class Profile(db.Model):
            'profile_created_on' : self.created,
        }
     @property
-    def serialize_many2many(self):
-       """
-       Return object's relations in easily serializeable format.
-       NB! Calls many2many's serialize property.
-       """
-       return [ item.serialize for item in self.many2many]
+    def serialize_many(self):
+       return {
+           'id'         : self.id,
+           'username' : self.username,
+       }

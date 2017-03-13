@@ -70,7 +70,7 @@ def uploadfile(file):
 @app.route('/profiles', methods=['POST', 'GET'])
 def profiles():
     if request.method == 'POST' and request.headers['Content-Type'] == 'application/json':
-        return jsonify(users = [i.serialize for i in Profile.query.all()])
+        return jsonify(users = [i.serialize_many for i in Profile.query.all()])
     return render_template('listing.html', userList = Profile.query.all())
 
 @app.route('/profile/<int:userid>', methods=['POST', 'GET'])
