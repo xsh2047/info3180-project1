@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block main %}
+  <div class="center-form center-block">
+    <h2>Profiles</h2>
+    {% include 'flash_messages.html' %}
+    <ul>
+        {% for user in userList %}
+            <li> <a href="{{ url_for('get_profile', userid = user.id) }}">{{ user.username }}</a></li>
+        {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

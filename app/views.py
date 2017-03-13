@@ -51,7 +51,7 @@ def profile():
             name = filename
         else:
             name = 'default.jpg'
-        user = Profile(form.firstname.data, form.lastname.data, form.age.data,
+        user = Profile(form.username.data, form.firstname.data, form.lastname.data, form.age.data,
                      form.bio.data, name, form.gender.data)
         db.session.add(user)
         db.session.commit()
@@ -69,11 +69,16 @@ def uploadfile(file):
     
 @app.route('/profiles', methods=['POST', 'GET'])
 def profiles():
-    return jsonify(users = [i.serialize for i in Profile.query.all()])
+    if request.method == 'POST' and request.headers['Content-Type'] == 'application/json':
+        return jsonify(users = [i.serialize for i in Profile.query.all()])
+    return render_template('listing.html', userList = Profile.query.all())
 
-@app.route('/profile/<int:id>/', methods=['POST', 'GET'])
-def get_profile(id):
-    return jsonify(Profile.query.get(id).serialize)
+@app.route('/profile/<int:userid>', methods=['POST', 'GET'])
+def get_profile(userid):
+    if request.method == 'POST' and request.headers['Content-Type'] == 'application/json':
+        return jsonify(Profile.query.get(userid).serialize)
+    return render_template('profile.html', user = Profile.query.get(userid).serialize)
+
 
 def timeinfo():
     return time.strftime("%c")

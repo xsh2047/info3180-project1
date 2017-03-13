@@ -4,23 +4,23 @@
 <hr />
 <div class="row">
     <div class="col-lg-6">
-      <img src="{{ url_for('static', filename='3001 A Laced Odyssey.jpeg') }}" class="img-thumbnail"></img>
+      <img src="{{ url_for('static', filename= "uploads/" + user.image ) }}" class="img-thumbnail"></img>
     </div>
     <div class="col-lg-6">
         <div class="panel panel-default">
-          <div class="panel-heading">Zabieru96</div>
+          <div class="panel-heading"><strong>{{ user.firstname + " " + user.lastname }}</strong></div>
           <div class="panel-body">
-            Today's date is {{time}}
+            <strong>Profile Created On: </strong> {{ user.profile_created_on.strftime('%Y-%m-%d') }}
             <hr />
             <ul class="list-unstyled">
-              <li><strong>Username: </strong> Zabieru</li>
-              <li><strong>ID Number: </strong> 620084236</li>
-              <li><strong>Age: </strong> 20</li>
-              <li><strong>Gender: </strong> Male</li>
+              <li><strong>Username: </strong> {{ user.username }}</li>
+              <li><strong>User ID: </strong> {{ user.id }}</li>
+              <li><strong>Gender: </strong> {{ user.gender }}</li>
+              <li><strong>Age: </strong> {{ user.age }}</li>
             </ul>
             <hr />
-            Find your balance
-          </div>
+              {{ user.bio }}
+            </div>
         </div>
     </div>
 </div>

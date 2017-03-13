@@ -5,6 +5,7 @@ class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(80))
     lastname = db.Column(db.String(80))
+    username = db.Column(db.String(80))
     age = db.Column(db.Integer)
     bio = db.Column(db.String(255))
     picture = db.Column(db.String(255))
@@ -26,7 +27,8 @@ class Profile(db.Model):
         except NameError:
             return str(self.id)  # python 3 support
 
-    def __init__(self, fname=None, lname=None, age=None, bio=None, picture=None, gender=None):
+    def __init__(self, username=None, fname=None, lname=None, age=None, bio=None, picture=None, gender=None):
+        self.username = username
         self.firstname = fname
         self.lastname = lname
         self.age = age
@@ -41,6 +43,7 @@ class Profile(db.Model):
     def serialize(self):
        return {
            'id'         : self.id,
+           'username' : self.username,
            'firstname': self.firstname,
            'lastname' : self.lastname,
            'image' : self.picture,
