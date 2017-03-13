@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Profile</h1>
+<hr />
+<div class="row">
+    <div class="col-lg-6">
+      <img src="{{ url_for('static', filename='3001 A Laced Odyssey.jpeg') }}" class="img-thumbnail"></img>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">Zabieru96</div>
+          <div class="panel-body">
+            Today's date is {{time}}
+            <hr />
+            <ul class="list-unstyled">
+              <li><strong>Username: </strong> Zabieru</li>
+              <li><strong>ID Number: </strong> 620084236</li>
+              <li><strong>Age: </strong> 20</li>
+              <li><strong>Gender: </strong> Male</li>
+            </ul>
+            <hr />
+            Find your balance
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
